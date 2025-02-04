@@ -46,11 +46,12 @@ class ArrayIns {
         }
     }
 
-    /*   2.Напишите код для вставки данных, отсортированных в обратном порядке
-         (99 999, 99 998, 99,997, …), в программу bubbleSort.java. Используйте такой же
-         объем данных, как в упражнении 1. Повторите эксперимент с программами
-         selectSort.java и insertSort.java.
-*/
+    /*
+2.Напишите код для вставки данных, отсортированных в обратном порядке
+(99 999, 99 998, 99,997, …), в программу bubbleSort.java. Используйте такой же
+объем данных, как в упражнении 1. Повторите эксперимент с программами
+selectSort.java и insertSort.java.
+   */
     public void reversInsertionSort() {
         int in, out;
         for (out = 1; out < nElems; out++)     // out - разделительный маркер
@@ -66,6 +67,26 @@ class ArrayIns {
         }
     }
 
+    /*
+3.2. Добавьте в класс ArrayIns программы insertSort.java (листинг 3.3) метод
+с именем median(), возвращающий медиану массива. (Напомним, что в группе чисел
+половина меньше медианы, а другая половина больше.) Найдите простое решение
+этой задачи.
+     */
+
+    public long median() {
+        long median;
+        int centerOfTheArray;
+        if (nElems % 2 != 0) {
+            centerOfTheArray = nElems / 2;
+            return a[centerOfTheArray];
+        } else {
+            centerOfTheArray = (nElems / 2);
+            median = (a[centerOfTheArray] + a[centerOfTheArray - 1]) / 2;
+            return median;
+        }
+    }
+
     //-------------------------------------------------------------
 }  // Конец класса ArrayIns
 
@@ -75,30 +96,31 @@ class InsertSortApp {
         int maxSize = 10_000;            // Размер массива
         ArrayIns arr;                 // Ссылка на массив
         arr = new ArrayIns(maxSize);  // Создание массива
-//        arr.insert(77);               // Вставка 10 элементов
-//        arr.insert(99);
-//        arr.insert(44);
-//        arr.insert(55);
-//        arr.insert(22);
-//        arr.insert(88);
-//        arr.insert(11);
-//        arr.insert(00);
-//        arr.insert(66);
-//        arr.insert(33);
+        arr.insert(77);               // Вставка 10 элементов
+        arr.insert(99);
+        arr.insert(44);
+        arr.insert(55);
+        arr.insert(22);
+        arr.insert(88);
+        arr.insert(11);
+        arr.insert(00);
+        arr.insert(66);
+        arr.insert(33);
 
-        for (int j = 0; j < maxSize; j++) // Заполнение массива
-        { // случайными числами
-            long n = (long) (java.lang.Math.random() * (maxSize - 1));
-            arr.insert(n);
-        }
+//        for (int j = 0; j < maxSize; j++) // Заполнение массива
+//        { // случайными числами
+//            long n = (long) (java.lang.Math.random() * (maxSize - 1));
+//            arr.insert(n);
+//        }
 //        arr.display();                // Вывод элементов
         long firstTime = System.currentTimeMillis();
-//        arr.insertionSort();          // Сортировка методом вставки
-        arr.reversInsertionSort();
+        arr.insertionSort();          // Сортировка методом вставки
+//        arr.reversInsertionSort();
         arr.display();                // Повторный вывод
         long secondTime = System.currentTimeMillis();
         arr.display();                // Повторный вывод
-        System.out.println("Time " + (secondTime - firstTime)/1000);
+        System.out.println("Time " + (secondTime - firstTime) / 1000);
+        System.out.println(arr.median());
     }
 }
 ////////////////////////////////////////////////////////////////
