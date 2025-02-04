@@ -56,7 +56,7 @@ class ArrayBub {
                     long temp = a[in];
                     a[in] = a[in + 1];
                     a[in + 1] = temp;
-                    if (a[in] < a[leftOuter]) {
+                    if (a[in] < a[leftOuter]) {   // затем он меняет направление и переносит наименьший элемент справа налево
                         temp = a[in];
                         a[in] = a[leftOuter];
                         a[leftOuter] = temp;
@@ -101,21 +101,21 @@ class BubbleSortApp {
         int maxSize = 100_000;            // Размер массива
         ArrayBub arr;                 // Ссылка на массив
         arr = new ArrayBub(maxSize);  // Создание массива
-//        arr.insert(77);               // Вставка 10 элементов
-//        arr.insert(99);
-//        arr.insert(44);
-//        arr.insert(55);
-//        arr.insert(22);
-//        arr.insert(88);
-//        arr.insert(11);
-//        arr.insert(00);
-//        arr.insert(66);
-//        arr.insert(33);
-        for (int j = 0; j < maxSize; j++) // Заполнение массива случайными числами
-        {
-            long n = (long) (java.lang.Math.random() * (maxSize - 1));
-            arr.insert(n);
-        }
+        arr.insert(77);               // Вставка 10 элементов
+        arr.insert(99);
+        arr.insert(44);
+        arr.insert(55);
+        arr.insert(22);
+        arr.insert(88);
+        arr.insert(11);
+        arr.insert(00);
+        arr.insert(66);
+        arr.insert(33);
+//        for (int j = 0; j < maxSize; j++) // Заполнение массива случайными числами
+//        {
+//            long n = (long) (java.lang.Math.random() * (maxSize - 1));
+//            arr.insert(n);
+//        }
 //        arr.display();                // Вывод элементов
         long firstTime = System.currentTimeMillis();
         arr.bubbleSort();

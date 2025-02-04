@@ -15,6 +15,11 @@ class ArrayIns {
         nElems = 0;                    // Пока нет ни одного элемента
     }
 
+    public int size() {
+        System.out.println("Size massive: " + nElems);
+        return nElems;
+    }
+
     //-------------------------------------------------------------
     public void insert(long value)    // Вставка элемента в массив
     {
@@ -85,7 +90,41 @@ selectSort.java и insertSort.java.
             return median;
         }
     }
-    //-------------------------------------------------------------
+
+    /*
+     3.3. Добавьте в программу insertSort.java (листинг 3.3) метод noDups(), который
+удаляет дубликаты из ранее отсортированного массива без нарушения порядка
+элементов. (Используйте метод insertionSort() для сортировки данных или просто
+вставьте данные в порядке сортировки в main().) Нетрудно представить себе схему,
+в которой все элементы от позиции обнаружения дубликата до конца массива сдвигаются
+на одну позицию, но это замедлит работу алгоритма до времени O(N^2) —
+по крайней мере при большом количестве дубликатов. Проследите за тем, чтобы
+в вашем алгоритме ни один элемент не перемещался более одного раза независимо
+ от количества дубликатов — это обеспечит выполнение алгоритма за время O(N ).
+     */
+    public long[] noDups() {
+        int lastСoincidence;
+        if (nElems != 0) {
+            for (int i = 0; i < nElems - 1; i++) {                  //0 0 11 11 22 33 44 55 66 77 88 99
+                for (int j = i + 1; j < nElems; j++) {
+                    int firstIndexСoincidence = 0;
+                    if (a[i] == a[j]) {
+                        firstIndexСoincidence++;
+                    }
+                    if (firstIndexСoincidence > 0) {
+                        for (int k = j; k < nElems; k++) {
+                            a[k - 1] = a[j++];
+                        }
+                        a[nElems - 1] = 0;
+                        nElems -= firstIndexСoincidence;
+                    }
+                }
+            }
+        }
+        return a;
+    }
+
+//-------------------------------------------------------------
 }  // Конец класса ArrayIns
 
 ////////////////////////////////////////////////////////////////
@@ -104,19 +143,24 @@ class InsertSortApp {
         arr.insert(00);
         arr.insert(66);
         arr.insert(33);
+        arr.insert(11);
+        arr.insert(00);
 
 //        for (int j = 0; j < maxSize; j++) // Заполнение массива
 //        { // случайными числами
 //            long n = (long) (java.lang.Math.random() * (maxSize - 1));
 //            arr.insert(n);
 //        }
-//        arr.display();                // Вывод элементов
+        arr.display();                                   // Вывод элементов
         long firstTime = System.currentTimeMillis();
-        arr.insertionSort();          // Сортировка методом вставки
-//        arr.reversInsertionSort();
-        arr.display();                // Повторный вывод
+//        arr.insertionSort();                           // Сортировка методом вставки
+        arr.reversInsertionSort();
+        arr.display();                                   // Повторный вывод после сортировки
+        arr.size();                                      // размер массива
+        arr.noDups();
+        arr.display();                                   // Повторный вывод
+        arr.size();
         long secondTime = System.currentTimeMillis();
-        arr.display();                // Повторный вывод
         System.out.println("Time " + (secondTime - firstTime) / 1000);
         System.out.println(arr.median());
     }
