@@ -73,7 +73,6 @@ selectSort.java и insertSort.java.
 половина меньше медианы, а другая половина больше.) Найдите простое решение
 этой задачи.
      */
-
     public long median() {
         long median;
         int centerOfTheArray;
@@ -86,7 +85,6 @@ selectSort.java и insertSort.java.
             return median;
         }
     }
-
     //-------------------------------------------------------------
 }  // Конец класса ArrayIns
 
