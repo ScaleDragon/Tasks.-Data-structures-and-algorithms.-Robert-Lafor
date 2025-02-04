@@ -16,7 +16,7 @@ class ArrayIns {
     }
 
     public int size() {
-        System.out.println("Size massive: " + nElems);
+        System.out.println("The number of elements in the array: " + nElems);
         return nElems;
     }
 
@@ -103,21 +103,52 @@ selectSort.java и insertSort.java.
  от количества дубликатов — это обеспечит выполнение алгоритма за время O(N ).
      */
     public long[] noDups() {
-        int lastСoincidence;
         if (nElems != 0) {
-            for (int i = 0; i < nElems - 1; i++) {                  //0 0 11 11 22 33 44 55 66 77 88 99
-                for (int j = i + 1; j < nElems; j++) {
-                    int firstIndexСoincidence = 0;
+            int i, j;
+            /**
+             * Поиск совпадений в массиве, если найдено присвоить ему значение -1
+             */
+            for (i = 0; i < nElems - 1; i++) {
+                for (j = i + 1; j < nElems; j++) {
                     if (a[i] == a[j]) {
-                        firstIndexСoincidence++;
+                        a[j] = -1;
+                    } else {
+                        break;
                     }
-                    if (firstIndexСoincidence > 0) {
-                        for (int k = j; k < nElems; k++) {
-                            a[k - 1] = a[j++];
-                        }
-                        a[nElems - 1] = 0;
-                        nElems -= firstIndexСoincidence;
+                }
+            }
+            /**
+             * сортировка массива
+             */
+            insertionSort();
+            int numberСoincidence = 0;
+            int firstСoincidence = 0;
+            /**
+             * Если значение равно -1, увеличить кол-во совпадений и перейти к следующему
+             */
+            for (int k = 0; k < nElems; k++) {
+                firstСoincidence = k;
+                while (a[k] == -1) {
+                    numberСoincidence++;
+                    k++;
+                }
+                /**
+                 * Если кол-во совпадений больше 0 переместить все значения влево на позицию равную numberСoincidence
+                 */
+                if (numberСoincidence > 0) {
+                    while (k != nElems) {
+                        a[firstСoincidence] = a[k];
+                        firstСoincidence++;
+                        k++;
                     }
+                }
+                /**
+                 * Ненужные значения установить в null и уменьшить кол-во элемнтов
+                 */
+                for (k = nElems - 1; numberСoincidence > 0; k--) {
+                    a[k] = 0;
+                    nElems--;
+                    numberСoincidence--;
                 }
             }
         }
@@ -138,13 +169,16 @@ class InsertSortApp {
         arr.insert(44);
         arr.insert(55);
         arr.insert(22);
+        arr.insert(22);
+        arr.insert(22);
         arr.insert(88);
         arr.insert(11);
         arr.insert(00);
         arr.insert(66);
         arr.insert(33);
         arr.insert(11);
-        arr.insert(00);
+        arr.insert(11);
+        arr.insert(11);
 
 //        for (int j = 0; j < maxSize; j++) // Заполнение массива
 //        { // случайными числами
@@ -153,8 +187,8 @@ class InsertSortApp {
 //        }
         arr.display();                                   // Вывод элементов
         long firstTime = System.currentTimeMillis();
-//        arr.insertionSort();                           // Сортировка методом вставки
-        arr.reversInsertionSort();
+        arr.insertionSort();                           // Сортировка методом вставки
+//        arr.reversInsertionSort();
         arr.display();                                   // Повторный вывод после сортировки
         arr.size();                                      // размер массива
         arr.noDups();
