@@ -36,19 +36,40 @@ class ArrayIns {
     }
 
     //-------------------------------------------------------------
+
+    /*
+     3.5. Измените метод insertionSort() в программе insertSort.java (листинг 3.3),
+чтобы он подсчитывал количество копирований и сравнений в ходе сортировки,
+а затем выводил полученные результаты. Для подсчета сравнений необходимо раз
+бить надвое сложное условие во внутреннем цикле while. Используйте программу
+для измерения количества копирований и сравнения для разных объемов данных,
+отсортированных в обратном порядке. Подтверждают ли результаты теоретическую
+сложность O(N^2)? Проделайте то же самое для почти отсортированных данных
+(в которых только несколько элементов находятся не на своих местах). Какие выво
+ды можно сделать об эффективности этого алгоритма для почти отсортированных
+данных?
+     */
     public void insertionSort() {
-        int in, out;
+        int in, out, numberCopies = 0, numberComparisons = 0;
         for (out = 1; out < nElems; out++)     // out - разделительный маркер
         {
             long temp = a[out];            // Скопировать помеченный элемент
+            numberCopies++;
             in = out;                      // Начать перемещения с out
-            while (in > 0 && a[in - 1] >= temp) // Пока не найден меньший элемент
+            while (in > 0) // Пока не найден меньший элемент
             {
-                a[in] = a[in - 1];            // Сдвинуть элемент вправо
-                --in;                       // Перейти на одну позицию влево
+                if (a[in - 1] >= temp) {
+                    a[in] = a[in - 1];            // Сдвинуть элемент вправо
+                    numberComparisons++;
+                    --in;                       // Перейти на одну позицию влево
+                } else {
+                    break;
+                }
             }
             a[in] = temp;                  // Вставить помеченный элемент
         }
+        System.out.println("Кол-во копирований: " + numberCopies);
+        System.out.println("Кол-во сравнений: " + numberComparisons);
     }
 
     /*
@@ -61,7 +82,7 @@ selectSort.java и insertSort.java.
         int in, out;
         for (out = 1; out < nElems; out++)     // out - разделительный маркер
         {
-            long temp = a[out];            // Скопировать помеченный элемент
+            long temp = a[out];            // Скопировать помеченный элемент        //77 99 44 55 22 22 22 88 11 0 66 33 11 11 11
             in = out;                      // Начать перемещения с out
             while (in > 0 && a[in - 1] <= temp) // Пока не найден меньший элемент
             {
@@ -121,34 +142,35 @@ selectSort.java и insertSort.java.
              * сортировка массива
              */
             insertionSort();
-            int numberСoincidence = 0;
-            int firstСoincidence = 0;
+            int numberCoincidence = 0;  // кол-во совпадений
+            int firstCoincidence;       // первое совпадение
             /**
              * Если значение равно -1, увеличить кол-во совпадений и перейти к следующему
              */
             for (int k = 0; k < nElems; k++) {
-                firstСoincidence = k;
+                firstCoincidence = k;
                 while (a[k] == -1) {
-                    numberСoincidence++;
+                    numberCoincidence++;
                     k++;
                 }
                 /**
                  * Если кол-во совпадений больше 0 переместить все значения влево на позицию равную numberСoincidence
                  */
-                if (numberСoincidence > 0) {
+                if (numberCoincidence > 0) {
                     while (k != nElems) {
-                        a[firstСoincidence] = a[k];
-                        firstСoincidence++;
+                        a[firstCoincidence] = a[k];
+                        firstCoincidence++;
                         k++;
                     }
+                    System.out.println("The number of coincidences: " + numberCoincidence);
                 }
                 /**
                  * Ненужные значения установить в null и уменьшить кол-во элемнтов
                  */
-                for (k = nElems - 1; numberСoincidence > 0; k--) {
+                for (k = nElems - 1; numberCoincidence > 0; k--) {
                     a[k] = 0;
                     nElems--;
-                    numberСoincidence--;
+                    numberCoincidence--;
                 }
             }
         }
@@ -164,39 +186,39 @@ class InsertSortApp {
         int maxSize = 10_000;            // Размер массива
         ArrayIns arr;                 // Ссылка на массив
         arr = new ArrayIns(maxSize);  // Создание массива
+        arr.insert(00);
+        arr.insert(11);
+        arr.insert(11);
+        arr.insert(11);
+        arr.insert(22);
+        arr.insert(22);
+        arr.insert(22);
         arr.insert(77);               // Вставка 10 элементов
         arr.insert(99);
         arr.insert(44);
         arr.insert(55);
-        arr.insert(22);
-        arr.insert(22);
-        arr.insert(22);
         arr.insert(88);
         arr.insert(11);
-        arr.insert(00);
         arr.insert(66);
         arr.insert(33);
-        arr.insert(11);
-        arr.insert(11);
-        arr.insert(11);
 
 //        for (int j = 0; j < maxSize; j++) // Заполнение массива
 //        { // случайными числами
 //            long n = (long) (java.lang.Math.random() * (maxSize - 1));
 //            arr.insert(n);
 //        }
-        arr.display();                                   // Вывод элементов
+        arr.display();                                     // Вывод элементов
         long firstTime = System.currentTimeMillis();
-        arr.insertionSort();                           // Сортировка методом вставки
-//        arr.reversInsertionSort();
-        arr.display();                                   // Повторный вывод после сортировки
-        arr.size();                                      // размер массива
-        arr.noDups();
-        arr.display();                                   // Повторный вывод
-        arr.size();
+//        arr.reversInsertionSort();                       // Сортировка в обратном порядке
+        arr.insertionSort();                               // Сортировка методом вставки
+//        arr.display();                                   // Повторный вывод после сортировки
+//        arr.size();                                      // Размер массива
+//        arr.noDups();                                    // Удаляет дубликаты из ранее отсортированного массива
+        arr.display();                                     // Повторный вывод
+//        arr.size();
         long secondTime = System.currentTimeMillis();
-        System.out.println("Time " + (secondTime - firstTime) / 1000);
-        System.out.println(arr.median());
+        System.out.println("Time " + (secondTime - firstTime) / 1000);    // Время работы программы
+//        System.out.println(arr.median());
     }
 }
 ////////////////////////////////////////////////////////////////
