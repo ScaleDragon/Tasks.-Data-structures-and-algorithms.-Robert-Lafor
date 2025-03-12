@@ -1,4 +1,4 @@
-package Data_Structures_and_Algorithms_Robert_LaForte.highArray;
+package Data_Structures_and_Algorithms_Robert_LaForte.Data_Structures_and_Algorithms_Robert_LaForte;
 
 // bubbleSort.java
 // Пузырьковая сортировка

@@ -1,6 +1,4 @@
-package Data_Structures_and_Algorithms_Robert_LaForte.highArray;
-
-import java.util.Arrays;
+package Data_Structures_and_Algorithms_Robert_LaForte.Data_Structures_and_Algorithms_Robert_LaForte;
 
 // orderedArray.java
 // Работа с классом упорядоченного массива
