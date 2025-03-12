@@ -131,19 +131,23 @@ public class HighArray {
         этом уменьшится.
      */
     public void noDups() {
+        int duplicate=0;
         for (int i = 0; i < nElems; i++) {
             for (int j = i + 1; j < nElems; j++) {
-                if (a[i] == a[j]) {
+                if (a[i] == a[j] && a[i] != -1) {
                     a[j] = -1;
+                    duplicate++;
                 }
             }
         }
+        System.out.println("duplicate: " + duplicate);
         for (int i = 0; i <= nElems; i++) {
             if (a[i]==-1){
                 for (int j = i+1; j <= nElems ; j++) {
                     a[i]=a[j];
+                    i++;
                 }
-                nElems--;
+                nElems-=duplicate;
             }
         }
 
