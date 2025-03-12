@@ -1,5 +1,7 @@
 package Data_Structures_and_Algorithms_Robert_LaForte.highArray;
 
+import java.util.Arrays;
+
 // insertSort.java
 // Сортировка методом вставки
 // Запуск программы: C>java InsertSortApp
@@ -97,12 +99,12 @@ class ArrayIns {
             long temp = a[out];                   // Скопировать помеченный элемент
             in = out;                             // Начать перемещения с out
 
-            while (in > 0 && a[in - 1] >= temp && a[in - 1] != -1) { // Пока не найден меньший элемент
-                if (a[in - 1] == temp) {
+            while (in > 0 && a[in - 1] >= temp && a[in - 1] != -1) { // Пока не найден меньший элемент и элемент не равен -1
+                if (a[in - 1] == temp) {                             // Если есть дубликат
                     a[in - 1] = -1;
                     --in;
-                    duplicate++;
-                    if (in > 1 && a[in - 1] > a[in]) {
+                    duplicate++;                                     // количество дубликатов
+                    if (in > 0 && a[in - 1] > a[in]) {               // Если предыдущий элемент больше -1, поменять местами
                         temp = a[in - 1];
                         a[in - 1] = -1;
                         a[in] = temp;
@@ -116,7 +118,7 @@ class ArrayIns {
         }
         System.out.println("duplicate: " + duplicate);
         out = 0;
-        while (out <= nElems) {
+        while (out < nElems) {
             a[out] = a[out + duplicate];
             out++;
         }
