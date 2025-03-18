@@ -1,4 +1,4 @@
-package Data_Structures_and_Algorithms_Robert_LaForte.Arras;
+package Data_Structures_and_Algorithms_Robert_LaForte.arras;
 
 // highArray.java
 // Класс массива с высокоуровневым интерфейсом
