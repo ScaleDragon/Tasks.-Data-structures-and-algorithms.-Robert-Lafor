@@ -1,4 +1,4 @@
-package Data_Structures_and_Algorithms_Robert_LaForte.arras;
+package Data_Structures_and_Algorithms_Robert_LaForte.chapter_3.arras;
 
 // insertSort.java
 // Сортировка методом вставки

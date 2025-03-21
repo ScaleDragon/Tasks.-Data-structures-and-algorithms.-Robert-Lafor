@@ -1,4 +1,4 @@
-package Data_Structures_and_Algorithms_Robert_LaForte.StackAndQueu;
+package Data_Structures_and_Algorithms_Robert_LaForte.chapter_4.StackAndQueu;
 
 import java.util.Arrays;
 
