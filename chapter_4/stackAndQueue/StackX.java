@@ -1,4 +1,4 @@
-package Data_Structures_and_Algorithms_Robert_LaForte.chapter_4.StackAndQueue;
+package Data_Structures_and_Algorithms_Robert_LaForte.chapter_4.stackAndQueue;
 
 // stack.java
 // Работа со стеком
