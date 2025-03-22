@@ -1,5 +1,6 @@
 package Data_Structures_and_Algorithms_Robert_LaForte.chapter_4.stackAndQueue;
 
+// листинг 4.4
 // queue.java
 // Работа с очередью
 // Запуск программы: C>java QueueApp

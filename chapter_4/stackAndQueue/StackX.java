@@ -1,5 +1,6 @@
 package Data_Structures_and_Algorithms_Robert_LaForte.chapter_4.stackAndQueue;
 
+// листинг 4.1
 // stack.java
 // Работа со стеком
 // Запуск программы: C>java StackApp
