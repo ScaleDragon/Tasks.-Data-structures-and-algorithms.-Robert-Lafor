@@ -101,6 +101,8 @@ class QueueApp {
         theQueue.insert(20);
         theQueue.insert(30);
         theQueue.insert(40);
+        System.out.print("Method displayValue(): ");
+        theQueue.displayValue();
         theQueue.remove();              // Извлечение 3 элементов
         theQueue.remove();              //    (10, 20, 30)
         theQueue.remove();
