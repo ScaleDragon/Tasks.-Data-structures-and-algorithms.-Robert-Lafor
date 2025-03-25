@@ -75,55 +75,55 @@ class Queue {
 независимо от положения front и rear.
      */
     public void displayValue() {
+        System.out.print("[");
         long value = 0;
-        int i;
-        for (i = front; i != rear; ) {
+        int count = 0;                               // счетчик для остановки программы
+        for (int i = front; count < nItems; i++) {   // пока счетчик не достигнет до конца очереди
             if (i == maxSize) {
                 i = 0;
             }
-            value = queArray[i++];
-            System.out.print(value + " ");
+            value = queArray[i];                     // присваивание значения переменной
+            count++;                                 // увеличение счетчика
+            System.out.print(value);                 // вывод значения
+            if (count < nItems) {
+                System.out.print(", ");
+            }
+            System.out.println("]");
         }
-        if (rear != -1 && rear != front) {
-            System.out.print(queArray[rear]);
+
+        //-------------------------------------------------------------
+    }  // Конец класса Queue
+
+    ////////////////////////////////////////////////////////////////
+    class QueueApp {
+        public static void main(String[] args) {
+            Queue theQueue = new Queue(5);  // Очередь из 5 ячеек
+            theQueue.insert(10);            // Вставка 4 элементов
+            theQueue.insert(20);
+            theQueue.insert(30);
+            theQueue.insert(40);
+            System.out.print("Method displayValue(): ");
+            theQueue.displayValue();
+            theQueue.remove();              // Извлечение 3 элементов
+            theQueue.remove();              //    (10, 20, 30)
+            theQueue.remove();
+            theQueue.insert(50);            // Вставка еще 4 элементов
+            theQueue.insert(60);            //    (с циклическим переносом)
+            theQueue.insert(70);
+            theQueue.insert(80);
+
+            /**
+             Task 4.1
+             **/
+            System.out.print("Method displayValue(): ");
+            theQueue.displayValue();
+
+            while (!theQueue.isEmpty())    // Извлечение и вывод
+            {                            // всех элементов
+                long n = theQueue.remove();  // (40, 50, 60, 70, 80)
+                System.out.print(n);
+                System.out.print(" ");
+            }
+            System.out.println("");
         }
-        System.out.println(" ");
-    }
-
-    //-------------------------------------------------------------
-}  // Конец класса Queue
-
-////////////////////////////////////////////////////////////////
-class QueueApp {
-    public static void main(String[] args) {
-        Queue theQueue = new Queue(5);  // Очередь из 5 ячеек
-        theQueue.insert(10);            // Вставка 4 элементов
-        theQueue.insert(20);
-        theQueue.insert(30);
-        theQueue.insert(40);
-        System.out.print("Method displayValue(): ");
-        theQueue.displayValue();
-        theQueue.remove();              // Извлечение 3 элементов
-        theQueue.remove();              //    (10, 20, 30)
-        theQueue.remove();
-        theQueue.insert(50);            // Вставка еще 4 элементов
-        theQueue.insert(60);            //    (с циклическим переносом)
-        theQueue.insert(70);
-        theQueue.insert(80);
-
-        /**
-         Task 4.1
-         **/
-        System.out.print("Method displayValue(): ");
-        theQueue.displayValue();
-        System.out.println(" ");
-
-        while (!theQueue.isEmpty())    // Извлечение и вывод
-        {                            // всех элементов
-            long n = theQueue.remove();  // (40, 50, 60, 70, 80)
-            System.out.print(n);
-            System.out.print(" ");
-        }
-        System.out.println("");
-    }
-}  // Конец класса QueueApp
+    }  // Конец класса QueueApp
